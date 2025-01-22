@@ -5,65 +5,76 @@ import Button from '../ui/button/Button';
 import { Tasks } from '../app/App';
 
 type FormTodo = {
-  task: string;
-}
+	task: string;
+};
 
 type FormTodoProps = {
-  setTasks: React.Dispatch<React.SetStateAction<Tasks>>;
-}
+	setTasks: React.Dispatch<React.SetStateAction<Tasks>>;
+};
 
-const FormTodo: React.FC<FormTodoProps> = ({setTasks}): ReactNode => {
-  const { values, handleChange, setValues } = useForm<FormTodo>({
-    task: ''
-  });
+const FormTodo: React.FC<FormTodoProps> = ({ setTasks }): ReactNode => {
+	const { values, handleChange, setValues } = useForm<FormTodo>({
+		task: '',
+	});
 
-  const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
-    setTasks((prevState) => [...prevState, {
-      id: Date.now(),
-      taskName: values.task,
-      completed: false
-    }]);
-    setValues({
-      task: '',
-    })
-  };
+	const handleSubmit = (e: SyntheticEvent) => {
+		e.preventDefault();
+		setTasks((prevState) => [
+			...prevState,
+			{
+				id: Date.now(),
+				taskName: values.task,
+				completed: false,
+			},
+		]);
+		setValues({
+			task: '',
+		});
+	};
 
-  const handleEnter = (event: KeyboardEvent) => {
-    if (event.key === 'enter') {
-        setTasks((prevState) => [...prevState, {
-          id: Date.now(),
-          taskName: values.task,
-          completed: false
-        }]);
-        setValues({
-        task: '',
-      })
-    }
-  }
+	const handleEnter = (event: KeyboardEvent) => {
+		if (event.key === 'enter') {
+			console.log(event);
+			setTasks((prevState) => [
+				...prevState,
+				{
+					id: Date.now(),
+					taskName: values.task,
+					completed: false,
+				},
+			]);
+			setValues({
+				task: '',
+			});
+		}
+	};
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleEnter);
+	useEffect(() => {
+		document.addEventListener('keydown', handleEnter);
 
-    return document.removeEventListener('keydown', handleEnter);
-  }, []);
+		return () => document.removeEventListener('keydown', handleEnter);
+	}, []);
 
-  return (
-    <form className="todo-form" onSubmit={handleSubmit}>
-      <Input 
-        className="todo-form__input"
-        placeholder="What need to do" 
-        name='task'
-        type="text"
-        value={values.task}
-        onChange={handleChange}
-      />
-      
-      <Button id="add" className='button todo-form__button' type='submit' disabled={values.task.length === 0}>
-        Add
-      </Button>
-    </form>
-  )
-}
+	return (
+		<form className='todo-form' onSubmit={handleSubmit}>
+			<Input
+				className='todo-form__input'
+				placeholder='What need to do'
+				name='task'
+				type='text'
+				value={values.task}
+				onChange={handleChange}
+			/>
+
+			<Button
+				id='add'
+				className='button todo-form__button'
+				type='submit'
+				disabled={values.task.length === 0}>
+				Add
+			</Button>
+		</form>
+	);
+};
 
 export default FormTodo;

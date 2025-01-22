@@ -102,6 +102,7 @@ section {
 }
 
 body {
+	height: 100vh;
 	margin: 0;
 	padding: 0;
 	font-size: 100%;
@@ -109,7 +110,6 @@ body {
 	line-height: 1;
 	vertical-align: baseline;
 	border: 0;
-	height: 100vh;
 }
 
 ol,
@@ -141,18 +141,18 @@ table {
 
 .app {
 	display: flex;
-	align-items: center;
 	flex-direction: column;
+	align-items: center;
 	padding-top: 60px;
 }
 
 #root {
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	max-width: 600px;
-	font-family: 'Arial', sans-serif;
-	border: 2px solid #000;
-	border-radius: 20px;
 	padding: 20px;
+	font-family: 'Arial', sans-serif;
+	border: 2px solid #000000;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
 .todo-title {
@@ -161,20 +161,20 @@ table {
 }
 
 .todo-form {
-	padding: 20px;
 	display: flex;
 	gap: 10px;
+	padding: 20px;
 }
 
 .todo-form__input {
-	font-size: 20px;
 	width: 100%;
-	border-radius: 10px;
 	padding-inline-start: 10px;
+	font-size: 20px;
+	border-radius: 10px;
 }
 
 .todo-form__input:hover {
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgb(0 0 0 / 10%);
 }
 
 .todo-form__input:focus {
@@ -182,45 +182,44 @@ table {
 }
 
 .todo-form__input:focus-visible {
-	outline: 1px solid currentColor;
-  outline-offset: 1px;
+	outline: 1px solid currentcolor;
+	outline-offset: 1px;
 }
 
 .todo-form__input::placeholder {
-	color: rgba(0, 0, 0, 0.15);
+	color: rgb(0 0 0 / 15%);
 }
 
 .todo-form__button {
-	background-color: transparent;
-	border: 1px solid currentColor;
 	padding: 5px;
+	background-color: transparent;
+	border: 1px solid currentcolor;
 	border-radius: 10px;
 	transform: scale(1);
 	opacity: 1;
-	transition: background-color ease-in .3s,
-	transform ease-in .3s,
-	opacity ease-in .3s;
+	transition: background-color ease-in 0.3s, transform ease-in 0.3s,
+		opacity ease-in 0.3s;
 }
 
 .todo-form__button:disabled {
 	cursor: default;
-	opacity: .3;
-}
-
-.todo-form__button:not(:disabled):hover {
-	background-color: rgba(0, 0, 0, 0.15);
+	opacity: 0.3;
 }
 
 .todo-form__button:active {
-	transform: scale(.8);
-	background-color: rgba(0, 0, 0, 0.15);
+	background-color: rgb(0 0 0 / 15%);
+	transform: scale(0.8);
+}
+
+.todo-form__button:not(:disabled):hover {
+	background-color: rgb(0 0 0 / 15%);
 }
 
 .todos-container {
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	gap: 10px;
 	width: 100%;
 }
@@ -235,8 +234,8 @@ table {
 }
 
 .button:focus-visible {
-	outline: 1px solid currentColor;
-  outline-offset: 1px;
+	outline: 1px solid currentcolor;
+	outline-offset: 1px;
 }
 
 .buttons-container {
@@ -255,14 +254,13 @@ table {
 	padding: 3px 5px;
 	border-radius: 5px;
 	transform: scale(1);
-	transition: color ease-in .3s,
-	transform ease-in .3s;
+	transition: color ease-in 0.3s, transform ease-in 0.3s;
 }
 
 .buttons-container__button:hover {
-	transform: scale(1.1);
 	padding: 3px 5px;
 	border-radius: 5px;
+	transform: scale(1.1);
 }
 
 .buttons-container__button:active {
@@ -279,8 +277,8 @@ table {
 }
 
 .todo-list__item {
+	width: 100%;
 	margin-bottom: 10px;
-	width: 100%
 }
 
 .todo-list__item:last-child {
@@ -288,60 +286,60 @@ table {
 }
 
 .todo-card {
-	border: 1px solid grey;
-	border-radius: 10px;
 	display: flex;
-	gap: 20px;
 	justify-content: start;
+	gap: 20px;
 	padding: 10px;
 	font-size: 20px;
+	border: 1px solid grey;
+	border-radius: 10px;
 }
 
 .todo-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
 }
 
 .todo__pseudo-checkbox {
 	position: relative;
 	display: flex;
-  justify-content: center;
-  align-items: center;
-  block-size: 20px;
-  inline-size: 20px;
-  border: 1px solid currentColor;
+	justify-content: center;
+	align-items: center;
+	inline-size: 20px;
+	block-size: 20px;
+	border: 1px solid currentcolor;
 	border-radius: 50%;
+}
+
+.todo__pseudo-checkbox::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	border-radius: 50%;
+	opacity: 0;
+	transition: all 0.3s ease;
+	content: '';
 }
 
 .todo__checkbox:checked + .todo__pseudo-checkbox::after {
 	opacity: 1;
 }
 
-.todo__pseudo-checkbox::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-	opacity: 0;;
-  background-color: #000;
-  transition: all 0.3s ease;
-	border-radius: 50%;
-}
-
 .todo-card:has(.todo__checkbox:checked) .todo-card__title {
-	text-decoration:line-through;
+	text-decoration: line-through;
 }
 
 .visually-hidden {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
+	position: absolute;
+	inline-size: 1px;
+	block-size: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
 }

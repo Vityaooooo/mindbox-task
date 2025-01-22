@@ -1,25 +1,30 @@
 {
-  "name": "frontend-challenge",
+  "name": "mindbox-task",
   "version": "1.0.0",
-  "description": "Привет! Если ты хочешь стать частью команды Учи.ру в рамках стажёрской программы, \r то тебе необходимо выполнить небольшое тестовое задание. Это нужно, что бы твои \r потенциальные наставники смогли оценить твои навыки и сравнив их с остальными\r кандидатами выбрать лучших из лучших.",
+  "description": "Тестовое задание на стажировку в компанию mindbox",
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vityaooooo/frontend-challenge.git"
+    "url": "git+https://github.com/Vityaooooo/mindbox-task.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Vityaooooo/frontend-challenge/issues"
+    "url": "https://github.com/Vityaooooo/mindbox-task/issues"
   },
-  "homepage": "https://github.com/Vityaooooo/frontend-challenge#readme",
+  "homepage": "https://github.com/Vityaooooo/mindbox-task#readme",
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@storybook/test": "^8.0.5",
     "@svgr/webpack": "^8.0.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@types/jest": "^29.5.14",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
+    "@types/testing-library__jest-dom": "^5.14.9",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "autoprefixer": "^10.4.14",
@@ -36,6 +41,9 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "22.1.0",
     "lint-staged": "^13.2.2",
     "merge": "^2.1.1",
     "mini-css-extract-plugin": "^2.7.6",
@@ -47,7 +55,9 @@
     "stylelint": "^16.1.0",
     "stylelint-config-standard-scss": "^13.0.0",
     "stylelint-order": "^6.0.3",
+    "ts-jest": "^29.2.5",
     "ts-loader": "^9.4.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.0.4",
     "typescript-plugin-css-modules": "^5.0.1",
     "url-loader": "^4.1.1",
@@ -62,7 +72,8 @@
     "stylelint:fix": "stylelint \"src/**/*.css\" --fix",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\" --ignore-path ./.prettierignore",
-    "edit": "npm run stylelint:fix && npm run lint && npm run format"
+    "edit": "npm run stylelint:fix && npm run lint && npm run format",
+    "test": "jest"
   },
   "dependencies": {
     "react": "^18.2.0",

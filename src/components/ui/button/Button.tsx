@@ -1,25 +1,32 @@
-import React, { PropsWithChildren, ReactNode, SyntheticEvent } from "react";
+import React, { PropsWithChildren, ReactNode, SyntheticEvent } from 'react';
 
 type ButtonProps = {
-  className?: string;
-  id: string;
-  type: 'button' | 'submit';
-  disabled?: boolean;
-  onClick?(e: SyntheticEvent): void;
-}
+	className?: string;
+	testid?: string;
+	id: string;
+	type: 'button' | 'submit';
+	disabled?: boolean;
+	onClick?(e: SyntheticEvent): void;
+};
 
 const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
-  className,
-  id,
-  type,
-  onClick,
-  disabled,
-  children
+	className,
+	testid,
+	id,
+	type,
+	onClick,
+	disabled,
+	children,
 }): ReactNode => (
-  <button 
-  id={id} className={className ?? ''} type={type} onClick={onClick} disabled={disabled}>
-  {children}
-</button>
+	<button
+		id={id}
+		data-testid={testid}
+		className={className ?? ''}
+		type={type}
+		onClick={onClick}
+		disabled={disabled}>
+		{children}
+	</button>
 );
 
-export default Button
+export default Button;
