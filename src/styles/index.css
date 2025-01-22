@@ -1,5 +1,3 @@
-@import '../fonts/font.css';
-
 html,
 div,
 span,
@@ -20,6 +18,7 @@ abbr,
 acronym,
 address,
 big,
+button,
 cite,
 code,
 del,
@@ -106,10 +105,11 @@ body {
 	margin: 0;
 	padding: 0;
 	font-size: 100%;
-	font-family: 'Roboto', sans-serif;
+	font-family: sans-serif;
 	line-height: 1;
 	vertical-align: baseline;
 	border: 0;
+	height: 100vh;
 }
 
 ol,
@@ -139,153 +139,209 @@ table {
 	box-sizing: border-box;
 }
 
-.header {
-	block-size: 64px;
-	background-color: #2196f3;
-	box-shadow: 0 4px 4px rgb(0 0 0 / 20%);
-}
-
-.menu {
-	block-size: 100%;
-	padding: 0 62px;
-}
-
-.menu__list {
+.app {
 	display: flex;
-	block-size: 100%;
+	align-items: center;
+	flex-direction: column;
+	padding-top: 60px;
 }
 
-.menu__button {
-	padding: 0 23px;
-	color: rgb(255 255 255 / 70%);
-	font-size: 14px;
-	font-family: 'Roboto', sans-serif;
-	line-height: 1.5;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
+#root {
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	max-width: 600px;
+	font-family: 'Arial', sans-serif;
+	border: 2px solid #000;
+	border-radius: 20px;
+	padding: 20px;
 }
 
-.menu__button_active {
-	color: #ffffff;
-	background-color: #1e88e5;
+.todo-title {
+	font-size: 40px;
+	text-align: center;
 }
 
-.gallery {
-	padding-block-start: 62px;
-}
-
-.gallery__list {
+.todo-form {
+	padding: 20px;
 	display: flex;
-	flex-wrap: wrap;
-	gap: 52px 48px;
-	padding-inline: 48px;
+	gap: 10px;
 }
 
-.card {
-	position: relative;
-	flex: 200px 1 1;
-	max-inline-size: 225px;
-	overflow: hidden;
-	background: linear-gradient(
-    90deg,
-		rgb(0 0 0 / 25%),
-    rgb(0 0 0 / 50%),
-		rgb(0 0 0 / 75%)
-  );
-  background-size: 200% 100%;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	animation: skeleton-loading 3s infinite;
-	aspect-ratio: 1/1;
+.todo-form__input {
+	font-size: 20px;
+	width: 100%;
+	border-radius: 10px;
+	padding-inline-start: 10px;
 }
 
-.card_loaded {
-  background: none; 
-  animation: none;
+.todo-form__input:hover {
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-
-  100% {
-    background-position: -200% 0;
-  }
+.todo-form__input:focus {
+	outline: none;
 }
 
-.card:hover {
-	box-shadow: 0 9px 18px rgb(0 0 0 / 10%),
-		0 6px 5px rgb(0 0 0 / 20%);
-	transform: scale(1.15);
+.todo-form__input:focus-visible {
+	outline: 1px solid currentColor;
+  outline-offset: 1px;
 }
 
-.card__image {
-	inline-size: 225px;
-	aspect-ratio: 1/1;
-	object-fit: cover;
-	object-position: center center;
+.todo-form__input::placeholder {
+	color: rgba(0, 0, 0, 0.15);
 }
 
-.card__button {
-	position: absolute;
-	inset-block-end: 19px;
-	inset-inline-end: 19px;
+.todo-form__button {
 	background-color: transparent;
-	border: none;
-	cursor: pointer;
+	border: 1px solid currentColor;
+	padding: 5px;
+	border-radius: 10px;
 	transform: scale(1);
 	opacity: 1;
-	transition: opacity 0.3s ease,
-	transform 0.3s ease;
+	transition: background-color ease-in .3s,
+	transform ease-in .3s,
+	opacity ease-in .3s;
 }
 
-.like-icon {
-	opacity: 0;
-	transition: opacity 0.3s ease,;
+.todo-form__button:disabled {
+	cursor: default;
+	opacity: .3;
 }
 
-.card:hover .like-icon {
+.todo-form__button:not(:disabled):hover {
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+.todo-form__button:active {
+	transform: scale(.8);
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+.todos-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+}
+
+.button {
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.button:focus {
+	outline: no;
+}
+
+.button:focus-visible {
+	outline: 1px solid currentColor;
+  outline-offset: 1px;
+}
+
+.buttons-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-block: 10px;
+}
+
+.todo-container__info {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.buttons-container__button {
+	padding: 3px 5px;
+	border-radius: 5px;
+	transform: scale(1);
+	transition: color ease-in .3s,
+	transform ease-in .3s;
+}
+
+.buttons-container__button:hover {
+	transform: scale(1.1);
+	padding: 3px 5px;
+	border-radius: 5px;
+}
+
+.buttons-container__button:active {
+	color: red;
+}
+
+.buttons-container__button_active {
+	outline: 1px solid red;
+}
+
+.todo-list {
+	padding-block: 10px;
+	width: 100%;
+}
+
+.todo-list__item {
+	margin-bottom: 10px;
+	width: 100%
+}
+
+.todo-list__item:last-child {
+	margin-bottom: 0;
+}
+
+.todo-card {
+	border: 1px solid grey;
+	border-radius: 10px;
+	display: flex;
+	gap: 20px;
+	justify-content: start;
+	padding: 10px;
+	font-size: 20px;
+}
+
+.todo-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.todo__pseudo-checkbox {
+	position: relative;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  block-size: 20px;
+  inline-size: 20px;
+  border: 1px solid currentColor;
+	border-radius: 50%;
+}
+
+.todo__checkbox:checked + .todo__pseudo-checkbox::after {
 	opacity: 1;
 }
 
-.card__button:active {
-	transform: scale(1.5);
+.todo__pseudo-checkbox::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+	opacity: 0;;
+  background-color: #000;
+  transition: all 0.3s ease;
+	border-radius: 50%;
 }
 
-.card__button:hover,
-.card:hover .card__button_active {
-	inset-block-end: 18px;
-	inset-inline-end: 13px;
-	background-color: #f24e1e;
-	clip-path: path(
-		'M20 36.7L17.1 34.06C6.8 24.72 0 18.56 0 11C0 4.84 4.84 0 11 0C14.48 0 17.82 1.62 20 4.18C22.18 1.62 25.52 0 29 0C35.16 0 40 4.84 40 11C40 18.56 33.2 24.72 22.9 34.08L20 36.7Z'
-	);
+.todo-card:has(.todo__checkbox:checked) .todo-card__title {
+	text-decoration:line-through;
 }
 
-.load-more {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding-block-start: 48px;
-}
-
-.not-found {
-	padding: 0 40px;
-	font-size: 40px;
-}
-
-@media (width <= 768px) {
-	.gallery {
-		padding-block-start: 20px;
-	}
-
-	.gallery__list {
-		padding-inline: 16px;
-		gap: 16px;
-	}
-
-	.menu {
-		padding: 0 16px;
-	}
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
