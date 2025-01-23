@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>70/70</span>
+                <span class='fraction'>75/75</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>70/70</span>
+                <span class='fraction'>75/75</span>
             </div>
         
             
@@ -132,7 +132,13 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -161,6 +167,9 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">31x</span>
@@ -176,11 +185,13 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">31x</span>
@@ -201,83 +212,90 @@
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import React, { ReactNode, SyntheticEvent, useEffect } from 'react';
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { ReactNode, SyntheticEvent, useEffect } from 'react';
 import useForm from '../../hooks/useForm';
 import Input from '../ui/input/Input';
 import Button from '../ui/button/Button';
 import { Tasks } from '../app/App';
 &nbsp;
 type FormTodo = {
-  task: string;
-}
+	task: string;
+};
 &nbsp;
 type FormTodoProps = {
-  setTasks: React.Dispatch&lt;React.SetStateAction&lt;Tasks&gt;&gt;;
-}
+	setTasks: React.Dispatch&lt;React.SetStateAction&lt;Tasks&gt;&gt;;
+};
 &nbsp;
-const FormTodo: React.FC&lt;FormTodoProps&gt; = ({setTasks}): ReactNode =&gt; {
-  const { values, handleChange, setValues } = useForm&lt;FormTodo&gt;({
-    task: ''
-  });
+const FormTodo: React.FC&lt;FormTodoProps&gt; = ({ setTasks }): ReactNode =&gt; {
+	const { values, handleChange, setValues } = useForm&lt;FormTodo&gt;({
+		task: '',
+	});
 &nbsp;
-  const handleSubmit = (e: SyntheticEvent) =&gt; {
-    e.preventDefault();
-    setTasks((prevState) =&gt; [...prevState, {
-      id: Date.now(),
-      taskName: values.task,
-      completed: false
-    }]);
-    setValues({
-      task: '',
-    })
-  };
+	const handleSubmit = (e: SyntheticEvent) =&gt; {
+		e.preventDefault();
+		setTasks((prevState) =&gt; [
+			...prevState,
+			{
+				id: Date.now(),
+				taskName: values.task,
+				completed: false,
+			},
+		]);
+		setValues({
+			task: '',
+		});
+	};
 &nbsp;
-  const handleEnter = (event: KeyboardEvent) =&gt; {
-    if (event.key === 'enter') {
-      console.log(event.key, event)
-      setTasks((prevState) =&gt; [...prevState, {
-        id: Date.now(),
-        taskName: values.task,
-        completed: false
-      }]);
-        setValues({
-        task: '',
-      })
-    }
-  }
+	const handleKeyDown = (event: React.KeyboardEvent&lt;HTMLInputElement&gt;) =&gt; {
+		if (event.key === 'Enter') {
+			event.preventDefault();
+			setTasks((prevState) =&gt; [
+				...prevState,
+				{
+					id: Date.now(),
+					taskName: values.task,
+					completed: false,
+				},
+			]);
+			setValues({
+				task: '',
+			});
+		}
+	};
 &nbsp;
-  useEffect(() =&gt; {
-    document.addEventListener('keydown', handleEnter);
+	return (
+		&lt;form className='todo-form' onSubmit={handleSubmit}&gt;
+			&lt;Input
+				className='todo-form__input'
+				placeholder='What need to do'
+				name='task'
+				type='text'
+				value={values.task}
+				onChange={handleChange}
+				onKeyDown={handleKeyDown}
+			/&gt;
 &nbsp;
-    return () =&gt; document.removeEventListener('keydown', handleEnter);
-  }, []);
+			&lt;Button
+				id='add'
+				className='button todo-form__button'
+				type='submit'
+				disabled={values.task.length === 0}&gt;
+				Add
+			&lt;/Button&gt;
+		&lt;/form&gt;
+	);
+};
 &nbsp;
-  return (
-    &lt;form className="todo-form" onSubmit={handleSubmit}&gt;
-      &lt;Input 
-        className="todo-form__input"
-        placeholder="What need to do" 
-        name='task'
-        type="text"
-        value={values.task}
-        onChange={handleChange}
-      /&gt;
-      
-      &lt;Button id="add" className='button todo-form__button' type='submit' disabled={values.task.length === 0}&gt;
-        Add
-      &lt;/Button&gt;
-    &lt;/form&gt;
-  )
-}
-&nbsp;
-export default FormTodo;</pre></td></tr></table></pre>
+export default FormTodo;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-22T23:37:43.423Z
+                at 2025-01-23T11:47:25.574Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

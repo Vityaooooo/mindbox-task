@@ -78,7 +78,7 @@ describe('FormTodo Component', () => {
 		const input = getByPlaceholderText('What need to do');
 
 		fireEvent.change(input, { target: { value: 'Task 2' } });
-		fireEvent.keyDown(input, { key: 'enter', code: 'Enter' });
+		fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
 
 		expect(mockSetTasks).toHaveBeenCalledTimes(1);
 

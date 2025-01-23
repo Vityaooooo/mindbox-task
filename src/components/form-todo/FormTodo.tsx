@@ -32,9 +32,9 @@ const FormTodo: React.FC<FormTodoProps> = ({ setTasks }): ReactNode => {
 		});
 	};
 
-	const handleEnter = (event: KeyboardEvent) => {
-		if (event.key === 'enter') {
-			console.log(event);
+	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			event.preventDefault();
 			setTasks((prevState) => [
 				...prevState,
 				{
@@ -49,12 +49,6 @@ const FormTodo: React.FC<FormTodoProps> = ({ setTasks }): ReactNode => {
 		}
 	};
 
-	useEffect(() => {
-		document.addEventListener('keydown', handleEnter);
-
-		return () => document.removeEventListener('keydown', handleEnter);
-	}, []);
-
 	return (
 		<form className='todo-form' onSubmit={handleSubmit}>
 			<Input
@@ -64,6 +58,7 @@ const FormTodo: React.FC<FormTodoProps> = ({ setTasks }): ReactNode => {
 				type='text'
 				value={values.task}
 				onChange={handleChange}
+				onKeyDown={handleKeyDown}
 			/>
 
 			<Button

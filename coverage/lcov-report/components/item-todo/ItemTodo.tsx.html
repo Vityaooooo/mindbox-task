@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>31/31</span>
+                <span class='fraction'>33/33</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/31</span>
+                <span class='fraction'>33/33</span>
             </div>
         
             
@@ -93,7 +93,10 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -104,63 +107,69 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import React, { ReactNode } from "react"
-import { Task } from "../app/App"
-import Input from "../ui/input/Input";
-import Title from "../ui/title/Title";
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { ReactNode } from 'react';
+import { Task } from '../app/App';
+import Input from '../ui/input/Input';
+import Title from '../ui/title/Title';
 &nbsp;
 type ItemTodoProps = {
-  task: Task;
-  toggleTask(id: number): void;
-}
+	task: Task;
+	toggleTask(id: number): void;
+};
 &nbsp;
-const ItemTodo: React.FC&lt;ItemTodoProps&gt; = ({
-  task,
-  toggleTask
-}): ReactNode =&gt; {
-  return (
-    &lt;li className="todo-list__item" key={task.id}&gt;
-      &lt;article className="todo-card"&gt;
-        &lt;label className="todo-label"&gt;
-          &lt;Input checked={task.completed} name="checkbox" type="checkbox" className="checkbox todo__checkbox visually-hidden" 
-            onChange={() =&gt; toggleTask(task.id)}/&gt;
-          &lt;span className="todo__pseudo-checkbox"&gt;&lt;/span&gt;
-        &lt;/label&gt;
-          &lt;Title level={2} className="todo-card__title"&gt;
-            {task.taskName}
-          &lt;/Title&gt;
-      &lt;/article&gt;
-    &lt;/li&gt;
-  )
-} 
+const ItemTodo: React.FC&lt;ItemTodoProps&gt; = ({ task, toggleTask }): ReactNode =&gt; {
+	return (
+		&lt;li className='todo-list__item'&gt;
+			&lt;article className='todo-card'&gt;
+				&lt;label className='todo-label'&gt;
+					&lt;Input
+						checked={task.completed}
+						name='checkbox'
+						type='checkbox'
+						className='checkbox todo__checkbox visually-hidden'
+						onChange={() =&gt; toggleTask(task.id)}
+					/&gt;
+					&lt;span className='todo__pseudo-checkbox'&gt;&lt;/span&gt;
+				&lt;/label&gt;
+				&lt;Title level={2} className='todo-card__title'&gt;
+					{task.taskName}
+				&lt;/Title&gt;
+			&lt;/article&gt;
+		&lt;/li&gt;
+	);
+};
 &nbsp;
-export default ItemTodo;</pre></td></tr></table></pre>
+export default ItemTodo;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-22T23:37:43.423Z
+                at 2025-01-23T11:47:25.574Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

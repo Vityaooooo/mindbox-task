@@ -7,7 +7,8 @@ type InputProps = {
 	placeholder?: string;
 	value?: string;
 	checked?: boolean;
-	onChange: React.ChangeEventHandler<HTMLInputElement>;
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -18,6 +19,7 @@ const Input: React.FC<InputProps> = ({
 	value,
 	checked,
 	onChange,
+	onKeyDown
 }): ReactNode => (
 	<input
 		className={className ?? ''}
@@ -27,6 +29,7 @@ const Input: React.FC<InputProps> = ({
 		value={value ?? ''}
 		checked={checked ?? false}
 		onChange={onChange}
+		onKeyDown={onKeyDown}
 	/>
 );
 
