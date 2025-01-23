@@ -332,6 +332,7 @@ table {
 
 .todo-card:has(.todo__checkbox:checked) .todo-card__title {
 	text-decoration: line-through;
+	color: grey;
 }
 
 .visually-hidden {
